@@ -344,4 +344,7 @@ Temporary Items
 # iCloud generated files
 *.icloud
 
+# Additional
+*.pdf
+
 # End of https://www.toptal.com/developers/gitignore/api/macos,latex
