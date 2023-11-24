@@ -11,6 +11,7 @@
     pdfpagemode = FullScreen % Ouverture du pdf en mode plein écran
 }
 \usepackage{french}[babel] % Utilisation de la langue française pour le document
+\usepackage[T1]{fontenc} % Permet la prise en charge des lettres accentuées
 
 \title{Le pseudo-terminal sur Linux}
 \author{Oumar Magomadov}
@@ -18,5 +19,11 @@
 
 \begin{document}
 \maketitle % Affichage du titre, auteur et date
+\setcounter{page}{1}
 \tableofcontents % Affichage de la table de matière
+\clearpage % Déplacement de la bibliographie sur la page suivante pour éviter le chevauchement
+\setcounter{page}{2}
+% sections...
+\nocite{*} % Ignorer citations et afficher les données du fichier references.bib
+\bibliography{references} % Affichage de la bibliographie en se basant du fichier references.bib
 \end{document}
