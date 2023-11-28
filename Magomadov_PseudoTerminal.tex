@@ -2,8 +2,6 @@
 
 \usepackage{graphicx} % Utilisation des images
 \graphicspath{ {./images/} } % Chemin relatif vers le répertoire avec les images
-\usepackage{natbib} % Utilisation d'une bibliographie
-\bibliographystyle{dinat} % Ajout du style 'dinat' (voir overleaf pour d'autres styles)
 \usepackage{hyperref} % Utilisation des liens dans le document (comme dans la table de matières)
 \hypersetup{ % Paramétrage de hyperref
     colorlinks = true, % Utilisation des liens coloré
@@ -38,5 +36,6 @@
 % ==========================
 
 \nocite{*} % Ignorer citations et afficher les données du fichier references.bib
+\bibliographystyle{plain}
 \bibliography{references}
 \end{document}
