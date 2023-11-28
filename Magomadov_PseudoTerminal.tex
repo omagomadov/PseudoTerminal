@@ -1,11 +1,14 @@
 \documentclass{report}[a4paper, 12pt] % Définir le document comme étant un rapport + format A4 & taille police 12
 
+\usepackage{graphicx} % Utilisation des images
+\graphicspath{ {./images/} } % Chemin relatif vers le répertoire avec les images
 \usepackage{natbib} % Utilisation d'une bibliographie
 \bibliographystyle{dinat} % Ajout du style 'dinat' (voir overleaf pour d'autres styles)
 \usepackage{hyperref} % Utilisation des liens dans le document (comme dans la table de matières)
 \hypersetup{ % Paramétrage de hyperref
     colorlinks = true, % Utilisation des liens coloré
     linkcolor = blue, % Utilisation de la couleur bleu pour les liens
+    urlcolor = blue, % Utilisation de la couleur bleu pour les liens URL
     pdftitle = {Le pseudo-terminal sur Linux}, % Le titre du document dans les informations du pdf
     pdfauthor = {Oumar Magomadov}, % L'auteur du document dans les informations du pdf
     pdfpagemode = FullScreen % Ouverture du pdf en mode plein écran
@@ -16,6 +19,10 @@
 \usepackage{titlesec} % Permet de customiser les chapitres, sections et sous-sections
 \titleformat{\chapter}[display] 
   {\normalfont\bfseries}{}{0pt}{\Huge}
+\usepackage{tcolorbox}
+\usepackage{verbatim}
+
+\setcounter{secnumdepth}{5}
 
 \title{Le pseudo-terminal sur Linux}
 \author{Oumar Magomadov}
@@ -27,6 +34,7 @@
 
 % ===== les sections =======
 \input{sections/introduction.tex}
+\input{sections/VirtualTerminal.tex}
 % ==========================
 
 \nocite{*} % Ignorer citations et afficher les données du fichier references.bib
