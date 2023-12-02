@@ -100,6 +100,10 @@ Quand le terminal est mis en mode canonique, il peut prendre en charge une multi
 	\item \textbf{EOF} : Ce caractère spécial permet de placer un délimiteur \textit{newline} à la fin du tampon d'entrée. Le pilote de terminal sera alors averti qu'il doit traiter toute la ligne jusqu'au délimiteur. Il peut être activé en utilisant la touche \textit{ENTER}.
 \end{itemize}
 
+Quand un terminal est utiliser, on s'aperçoit qu'il y a un \textbf{prompt} qui est affiché sur l'écran. Ce \textbf{prompt} est l'interpréteur de commandes, la plupart du temps il s'agit de \textit{bash}. En réalité, c'est un processus qui a été cloné et qui utilise le code de bash (en utilisant la commande \textit{exec}).
+
+Ce programme est ce qu'on appelle un \textit{reading process}, un processus qui va \textit{lire le terminal}. Si le terminal est en mode canonique, les données stockées dans le tampon d'entrée seront lues par ligne. Une ligne est délimitée par un caractère spécial \textit{line feed} (voir plus haut). C'est seulement après le délimiteur que le shell va effectuer une demande de lecture au terminal pour récupérer ses données dans le tampon.
+
 Une liste exhaustive de tous les caractères spéciaux est disponible sur Internet\footnote{\url{https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap11.html}}.
 
 \begin{figure}[h]
