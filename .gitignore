@@ -347,4 +347,7 @@ Temporary Items
 # Additional
 *.pdf
 
+# Executable
+./codes/bin/*
+
 # End of https://www.toptal.com/developers/gitignore/api/macos,latex
