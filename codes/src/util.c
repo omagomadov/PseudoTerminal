@@ -28,3 +28,9 @@ void prepare_regex(regex_t *preg) {
 		exit(EXIT_FAILURE);
 	}
 }
+
+void prepare_regex_only_number(regex_t *preg) {
+	if( regcomp(preg, "[0-9]$", REG_EXTENDED | REG_ICASE) < 0 ) {
+		exit(EXIT_FAILURE);
+	}
+}

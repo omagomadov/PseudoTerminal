@@ -40,11 +40,20 @@ int check_pts_exist(char *path);
 int check_is_root();
 
 /**
- * @brief Prépare le pattern pour le regex.
+ * @brief Prépare le pattern qui n'accepte que '/dev/pts/N'.
+ *
+ * @note (N étant un nombre de 0 à X)
  *
  * @param preg Le pattern regex.
  *
 */
 void prepare_regex(regex_t *preg);
+
+/**
+ * @brief Prépare le pattern regex qui n'accepte que 1 nombre.
+ *
+ * @param preg Le pattern regex.
+ */
+void prepare_regex_only_number(regex_t *preg);
 
 #endif

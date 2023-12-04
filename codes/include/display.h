@@ -1,4 +1,7 @@
 #include <stdio.h>
+#include <dirent.h>
+#include <sys/types.h>
+#include <regex.h>
 
 #ifndef DISPLAY_H
 #define DISPLAY_H
@@ -22,5 +25,11 @@ void display_error_user_not_root();
  *
 */
 void display_error_missing_arguments();
+
+/**
+ * @brief Affiche la liste des pseudo-terminaux esclaves disponible.
+ *
+*/
+void display_available_pts();
 
 #endif
