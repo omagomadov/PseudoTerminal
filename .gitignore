@@ -348,6 +348,6 @@ Temporary Items
 *.pdf
 
 # Executable
-./codes/bin/*
+**/run
 
 # End of https://www.toptal.com/developers/gitignore/api/macos,latex
