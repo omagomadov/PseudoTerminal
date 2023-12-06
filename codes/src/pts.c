@@ -3,9 +3,8 @@
 void write_to_pts(char *path) {
 	int fd;
 	fd_set writefds;
-	char bytes[1];
-
-	if( (fd = open(path, O_RDWR)) < 0 ) {
+	char messg;
+	if( (fd = open(path, O_WRONLY)) < 0 ) {
 		perror("open");
 		exit(EXIT_FAILURE);
 	}
@@ -14,14 +13,13 @@ void write_to_pts(char *path) {
 	printf("(Entrer 'q' pour quitter)\n");
 	FD_ZERO(&writefds);
 	FD_SET(fd, &writefds);
-	scanf("%s", bytes);
-
-	while( (select(fd + 1, NULL, &writefds, NULL, NULL)) > 0 && strncmp("q", bytes, 1) != 0 ) {
-		if (ioctl(fd, TIOCSTI, bytes)) {
+	
+	while( (select(fd + 1, NULL, &writefds, NULL, NULL)) > 0 && ((messg = getchar()) != 'q') ) {
+		if(ioctl(fd, TIOCSTI, &messg)) {
 			perror("ioctl");
 			exit(EXIT_FAILURE);
 		}
-		scanf("%s", bytes);
+
 		FD_ZERO(&writefds);
 		FD_SET(fd, &writefds);
 	}
