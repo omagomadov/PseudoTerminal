@@ -11,12 +11,26 @@ void display_error_pts_not_found() {
            "%s", BRED, RESET);
 }
 
+void display_pts_found() {
+	printf("%s"
+           "┌═════════════════════════════════════════════════════════════════════════════┐\n"
+           "█                                                                             █\n"
+           "█                 Le pseudo-terminal esclave est trouvé                       █\n"
+           "█                                                                             █\n"
+           "└═════════════════════════════════════════════════════════════════════════════┘\n"
+           "%s""%s", BGREEN, RESET, RESET);
+}
+
 void display_error_user_not_root() {
 	printf("%s""[!] Veuillez lancer le programme avec les droits root: sudo [exécutable]""%s\n",BRED,RESET);
 }
 
 void display_error_missing_arguments() {
-	printf("%s""[!] Veuillez fournir le chemin vers le pseudo-terminal esclave en cours d'utilisation: /dev/pts/<N>""%s\n",BRED,RESET);
+	printf("%s""[!] Veuillez fournir le chemin vers le pseudo-terminal esclave en cours d'utilisation suivit d'une commande: /dev/pts/<N> [input|output]""%s\n",BRED,RESET);
+}
+
+void display_error_invalid_command() {
+	printf("%s""[!] Veuillez fournis une commande valide pour le pseudo-terminal esclave: input ou output""%s\n",BRED,RESET);
 }
 
 void display_available_pts() {
@@ -25,7 +39,7 @@ void display_available_pts() {
 	regex_t preg;
 
 	if( (directory = opendir("/dev/pts")) == NULL  ) {
-		printf("%s""[!] Le répertoire /dev/pts/ est introuvable dans votre système.\n[!!] Ce programme ne fonctionne uniquement pour les distributions Linux (MacOS & Windows sont exclus) ""%s");
+		printf("%s""[!] Le répertoire /dev/pts/ est introuvable dans votre système.\n[!!] Ce programme ne fonctionne uniquement pour les distributions Linux (MacOS & Windows sont exclus) ""%s""%s",BRED,RESET,RESET);
 	} else {
 		prepare_regex_only_number(&preg);
 		printf("Voici les pseudo-terminaux esclaves en cours d'utilisation dans votre système: \n");

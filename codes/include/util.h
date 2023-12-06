@@ -1,12 +1,8 @@
 #include <string.h>
-#include <sys/types.h>
 #include <regex.h>
 #include <errno.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <sys/stat.h>
-#include <fcntl.h>
-
 
 #ifndef UTIL_H
 #define UTIL_H
