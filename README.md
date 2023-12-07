@@ -23,15 +23,15 @@ Ce projet réunit un rapport détaillé et une présentation approfondie sur l'u
 ## Utilisation
 
 ### Pour générer le PDF du rapport:
-- Premiere lancer pdftex pour générer le pdf
+- Tout d'abord lancer `pdftex` pour générer le pdf
 ```
 pdftex Magomadov_PseudoTerminal.tex
 ```
-- Ensuite lancer bibtex pour mettre à jour la bibliographie
+- Ensuite lancer `bibtex` pour mettre à jour la bibliographie
 ```
 bibtex Magomadov_PseudoTerminal.aux
 ```
-- Et pour terminer, relancer pdftex pour inclure la bibliographie dans le pdf
+- Et pour terminer, relancer `pdftex` pour inclure la bibliographie dans le pdf
 ```
 pdftex Magomadov_PseudoTerminal.tex
 ```
@@ -46,7 +46,7 @@ make
 ```
 
 ### Pour faire fonctionner l'automatisation (utiliser sudo)
-- Il tout simplement lancer l'exécutable `run`, spécifier le chemin vers le pseudo-terminal esclave & fournis le type de d'option qu'on souhaite effectuer (input ou output)
+- Il faut tout simplement lancer l'exécutable `run`, spécifier le chemin vers le pseudo-terminal esclave & fournis le type de d'option qu'on souhaite effectuer (input ou output)
 ```
 sudo ./run /dev/pts/N input
 ```
