@@ -1,0 +1,85 @@
+\section{Mise en pratique}
+
+\begin{frame}[fragile]
+	\textbf{Pour lire les données depuis le pseudo-terminal esclave}
+	\begin{itemize}
+		\item Effectuer une ouverture en lecture seul sur le fichier spéciale du pseudo-terminal esclave dans le répertoire \textbf{/dev}
+		\item Avec ce descripteur de fichier, il sera possible d'effectuer \textit{read}
+	\end{itemize}
+
+	\begin{lstlisting}[language=C]
+	if( (fd = open(path, O_RDONLY)) < 0 ) {
+		perror("open");
+		exit(EXIT_FAILURE);
+	}
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+
+	\begin{itemize}
+		\item Le fait de lire sur le descripteur de fichier peut effectuer un \textit{blocage}
+		\item Pour évité ça, utilisation de l'appel système \textbf{select()}
+		\item \textbf{select()} permet de faire du monitoring sur des descripteurs de fichiers
+		\item \textbf{select()} utilise pour ça 2 ensembles : readsfds \& writefds
+		\item Il faut \textit{nettoyer} l'ensemble \& ajouter le descripteur dans l'ensemble
+	\end{itemize}
+
+	\begin{lstlisting}[language=C]
+        FD_ZERO(&readfds);
+        FD_SET(fd, &readfds);
+        \end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+
+	\begin{itemize}
+		\item \textbf{select()} retourne le nombres de descripteurs qui demandent une lecture ou écriture
+		\item Effectuer un \textit{read} sur le tampon d'entrée
+	\end{itemize}
+
+	\begin{lstlisting}[language=C]
+	while( (select(fd + 1, &readfds, NULL, NULL, NULL)) > 0 && strncmp("q", bytes, 1) != 0) {
+                read(fd, bytes, 1);
+                write(1, bytes, sizeof(bytes));
+                FD_ZERO(&readfds);
+                FD_SET(fd, &readfds);
+        }
+	\end{lstlisting}
+
+\end{frame}
+
+\begin{frame}[fragile]
+	\textbf{Pour écrire des données sur le pseudo-terminal esclave}
+	\begin{itemize}
+		\item Effectuer une écriture seul sur le fichier spéciale du pseudo-terminal esclave dans le répertoire \textbf{/dev}
+	\end{itemize}
+
+	\begin{lstlisting}[language=C]
+	if( (fd = open(path, O_WRONLY)) < 0 ) {
+                perror("open");
+                exit(EXIT_FAILURE);
+        }
+	\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+	\begin{itemize}
+		\item Utilisation de l'appel système \textbf{ioctl()}
+		\item Permet de manipuler les paramètres d'un fichier spéciale de type caractère sur Linux
+		\item Le pseudo-terminal esclave est bien un fichier spéciale de type caractère
+		\item la commande \textbf{TIOCSTI} permet d'envoyer des bytes dans le tampon d'entrée du pseudo-terminal esclave
+	\end{itemize}
+
+	\begin{lstlisting}[language=C]
+	while( (select(fd + 1, NULL, &writefds, NULL, NULL)) > 0 && ((messg = getchar()) != 'q') ) {
+                if(ioctl(fd, TIOCSTI, &messg)) {
+                        perror("ioctl");
+                        exit(EXIT_FAILURE);
+                }
+
+                FD_ZERO(&writefds);
+                FD_SET(fd, &writefds);
+        }
+	\end{lstlisting}
+\end{frame}

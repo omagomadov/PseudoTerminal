@@ -1,17 +1,39 @@
 \documentclass{beamer}
 
+\usepackage{listings}
+
+\lstset{
+    basicstyle=\small\ttfamily,
+    breaklines=true,
+    columns=fullflexible,
+    frame=single,
+    numbers=left,
+    numberstyle=\tiny,
+    language=C
+}
+
 \title{Le pseudo-terminal sur Linux}
 \author{Oumar Magomadov}
 \institute{École Supérieure d'Informatique}
 \date{2023}
 
 \usetheme{Warsaw}
+\titlegraphic{\includegraphics[width=2cm]{images/logo_esi.png}}
 
 \begin{document}
 
 \frame{\titlepage}
 
-\begin{frame}
+\begin{frame}{Table des matières}
+	\frametitle{Table des matières}
+	\tableofcontents
 \end{frame}
+
+% =================
+\input{sections_presentation/Introduction.tex}
+\input{sections_presentation/VirtualTerminal.tex}
+\input{sections_presentation/PseudoTerminal.tex}
+\input{sections_presentation/CodeExplanation.tex}
+% ================
 
 \end{document}
